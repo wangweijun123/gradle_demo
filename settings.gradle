@@ -1,0 +1,4 @@
+// 告诉gradle,这些模块都包含到构建中去
+// settings.gradle 对应着 Settings.java, include 对应着方法 Settings.include(String... projectPaths);
+include ':Mylibrary', ':app'
+rootProject.name = "GradleDemo"

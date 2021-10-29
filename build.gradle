@@ -1,0 +1,29 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+// 顶层的build.gradle 对应着 Project.java 类
+
+buildscript {
+    repositories { // 仓库
+        google()
+        jcenter()
+    }
+    dependencies {
+        // 定义了gradle 的 android 插件版本的依赖,
+        // 就是在构建app的时候需要android插件, 其他模块都是应用这个插件
+        // 这个时候自定义插件就来了,需要到这里配置
+        classpath 'com.android.tools.build:gradle:4.1.2'
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

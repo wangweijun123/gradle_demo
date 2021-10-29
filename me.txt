@@ -1,0 +1,30 @@
+1 中文官网 https://developer.android.google.cn/
+2 gradle构建工具:构建apk, 使用groovy(动态语言)与java(静态语言)
+3 gradle 两个概念: 项目与任务，一个项目包含多个任务
+每个build.gradle都是一个项目: 比如 app 与 libraray都是项目
+一个任务包含一系列的动作对象 List<Action>, 按顺序执行, 动作对象可以看做成java
+中的一个方法
+4 构建的三个阶段：
+初始化：几个moudle 就会产生几个项目(project?)实例
+配置：生成依赖的关系图,为每个项目实例创建和配置任务
+执行: gradle决定哪个任务会被执行
+
+5 SourceSet 源集:app/src/main 就是一个源集(包裹代码与资源文件,一起执行与编译)
+  app/src/main 默认版本的源集
+  make Project 按钮构建任务
+6 运行gradle 与 gradle wrapper 是一样的
+ linux : ./gradlew
+ windows: gradlew.bat 来替代 gradle.bat
+执行gradlew或者gradle命令时配置path
+ C:\Users\Administrator\.gradle\wrapper\dists\gradle-6.5-bin\6nifqtx7604sqp1q6g8wikw7p\gradle-6.5\bin
+然后再项目的根目录执行: gradlew.bat -v (.bat 可以省略)
+
+7 gradlew tasks: 列出所有可以使用的命令
+比如
+gradlew clean 清理任务
+gradlew assembleDebug 生成debug包
+
+8 根目录下的settings.gradle 对应着 Settings.java,构建过程中创建一个对象,
+并调用里面的方法
+
+9 构建工具包含哪些工具: appt zipalign dex
