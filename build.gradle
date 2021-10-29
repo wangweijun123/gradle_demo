@@ -24,6 +24,13 @@ allprojects {
     }
 }
 
+// 顶层build.gradle文件 ---> Project 对象，容许动态添加属性而已
+// 在顶层build.gradle文件中定义扩展属性：方便各个moudle统一使用
+// ext 名字是规定写法
+ext {
+    compileSdkVersionxx = 29;
+}
+
 task clean(type: Delete) {
     delete rootProject.buildDir
 }

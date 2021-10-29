@@ -9,7 +9,8 @@ plugins {
 // 这个就是android插件的属性？
 android {
     // 每个属性都有java 类的方法对应哈
-    compileSdkVersion 30
+    // 使用顶层目录配置的扩展属性
+    compileSdkVersion rootProject.ext.compileSdkVersionxx
     buildToolsVersion "30.0.3"
 
     // 这个会覆盖androidmanifest.xml 对应的配置
@@ -28,6 +29,20 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            // 根据构建类型给生成的BuildConfig注入一个常量(String(字符串需要括号哦), boolean)
+            // 都是对应着java类中的方法
+            buildConfigField "String", "API_UUL", "\"http://wangweijun.com\""
+            buildConfigField "boolean", "LOG_HTTP_CALL", "false"
+            // 配置资源值(给strings.xml)
+            resValue "string", "app_name_from_build_gradle", "e_release"
+        }
+        debug {
+            // 根据构建类型给生成的BuildConfig注入一个常量
+            buildConfigField "String", "API_UUL", "\"http://duanxia.com\""
+            buildConfigField "boolean", "LOG_HTTP_CALL", "true"
+            // 配置资源值(给strings.xml,增加一个string资源)
+            resValue "string", "app_name_from_build_gradle", "e_debug"
         }
     }
     compileOptions {

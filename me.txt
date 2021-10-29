@@ -28,3 +28,5 @@ gradlew assembleDebug 生成debug包
 并调用里面的方法
 
 9 构建工具包含哪些工具: appt zipalign dex
+
+10 构建工具会生产多个(每个moudle都会有)BuildConfig.java
