@@ -1,11 +1,10 @@
 package com.darren.optimize.gradledemo;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.darren.optimize.lib2.Mylib2;
-import com.darren.optimize.lib3.Mylib3;
 import com.darren.optimize.mylibrary.MyLibrary;
 
 public class MainActivity extends AppCompatActivity {
