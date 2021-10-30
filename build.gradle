@@ -28,8 +28,30 @@ allprojects {
 // 在顶层build.gradle文件中定义扩展属性：方便各个moudle统一使用
 // ext 名字是规定写法
 ext {
-    compileSdkVersionxx = 29;
+    compileSdkVersionxx = 29
+    local = 'hello from build.gradle'
 }
+
+/*task printProperties << {
+    println local
+}*/
+
+// task新建一个任务
+//根目录运行这个task任务 gradlew printProperties -Pcmd="hello from cmd"
+// 其实就Project.java里面的方法
+task('printProperties', {
+    println local   // 打印ext里面的属性
+    println(propertiesFile) // 打印gradle.properties里面的属性
+
+    boolean flag = project.hasProperty('cmd');
+    println 'flag = ' + flag
+    if (flag) {
+        println cmd
+    }
+})
+
+
+
 
 task clean(type: Delete) {
     delete rootProject.buildDir
