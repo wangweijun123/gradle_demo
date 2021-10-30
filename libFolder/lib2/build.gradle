@@ -1,0 +1,29 @@
+plugins {
+    id 'java-library'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_7
+    targetCompatibility = JavaVersion.VERSION_1_7
+}
+
+dependencies {
+    // compile 与 implementation 依赖传递的区别
+    // compile 依赖是可以传递的
+    // Main 依赖 lib2， lib2依赖lib3，当lib2 使用compile，
+    // 那main模块可以直接使用lib3中的class， 当使用implementation的时候
+    // main 不能使用
+
+    // 依赖库的配置有5中 compile implementation apk provided testCompile
+    /**
+     * compile与implementation: 打包进apk
+     * 下面两个只适合jar包
+     * apk 打包进apk,不参与编译
+     * provided 参与编译，不打进apk
+     */
+
+    compile project(':libFolder:lib3')
+//    implementation project(':libFolder:lib3')
+
+
+}

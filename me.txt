@@ -30,3 +30,11 @@ gradlew assembleDebug 生成debug包
 9 构建工具包含哪些工具: appt zipalign dex
 
 10 构建工具会生产多个(每个moudle都会有)BuildConfig.java
+
+11 gradle作用: 构建工具与依赖管理
+
+12 原生依赖库 xxx.so, 在module模块层app/src/main/ 下创建jniLibs/
+
+13 依赖库的配置:5种 compile implementation apk provided testCompile
+
+14 动态化版本: 最好指定依赖库的版本号，包括最小版本

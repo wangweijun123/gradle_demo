@@ -3,8 +3,16 @@
 
 buildscript {
     repositories { // 仓库
+        // 两个远程仓库
         google()
         jcenter()
+        // 本地仓库: 依赖库在 .m2 文件夹下
+        mavenLocal()
+        // 私有服务器的仓库地址,也可以配成本地地址
+        maven {
+            url "http:///xxxx"
+//            url "../xxxx"
+        }
     }
     dependencies {
         // 定义了gradle 的 android 插件版本的依赖,
