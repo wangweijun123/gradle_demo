@@ -1,10 +1,10 @@
 // 第一种写法
-plugins {
+/*plugins {
     // 应用android插件(在根目录已经定义，所以可以使用),就可以使用android插件预定义的属性与任务
     id 'com.android.application'
-}
+}*/
 // 第二种写法
-//apply plugin: 'com.android.application'
+apply plugin: 'com.android.application'
 
 // 这个就是android插件的属性？
 android {
@@ -25,6 +25,15 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    /*signingConfigs {
+        release {
+            storeFile file("../keystore/keystore.jks")
+            storePassword "123456"
+            keyAlias "wangweijun"
+            keyPassword "123456"
+        }
+    }*/
+
     buildTypes {
         release {
             minifyEnabled false
@@ -44,6 +53,16 @@ android {
             // 配置资源值(给strings.xml,增加一个string资源)
             resValue "string", "app_name_from_build_gradle", "e_debug"
         }
+
+        /*applicationVariants.all { variant ->
+            variant.outputs.each { output ->
+                if ("release".equals(buildType.name)) {
+                    def outputFile = output.outputFile
+                    def filename = "MiFinance_v" + versionName + "(" + versionCode  + ")" + "_" + releaseTime() + "_" + variant.productFlavors.ext.channel[0] + ".apk"
+                    output.outputFile = new File(outputFile.parent, filename);
+                }
+            }
+        }*/
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -66,3 +85,71 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 }
+
+
+/*
+android.applicationVariants.all { variant ->
+    // 任务代码
+    println 'variant = ' + variant
+    variant.outputs.each { output ->
+        def file = output.outputFile
+        // Cannot set the value of read-only property 'outputFile'
+        output.outputFile = new File(file.parent,
+                file.name.replace(".apk", "-${variant.versionName}.apk"))
+    }
+}
+*/
+
+/*android.applicationVariants.all { variant ->
+    // 任务代码
+    //variant 代表这个class com.android.build.gradle.api.ApplicationVariant
+    println 'variant = ' + variant
+    boolean flag = variant.install
+    println 'flag = ' + flag
+    // 还是不管用
+    if (flag) {
+        tasks.create(name: "run",
+            dependsOn: variant.install) {
+            description "installs the dddddddddddd"
+            doFirst {
+                println 'exec ddddddddddddddddddddd= '
+                exec {
+                    executable = 'adb'
+                    // adb shell am start -n com.darren.optimize.gradledemo/com.darren.optimize.gradledemo.MainActivity
+                    args = ['shell', 'am', 'start', '-n', "${variant.applicationId}/.MainActivity"]
+                }
+            }
+        }
+    }
+}*/
+
+// 应用插件
+apply plugin: RunPlugin
+
+
+//定义插件
+class RunPlugin implements Plugin<Project> {
+    public static final String EXT_NAME = "tinkerPatch"
+    @Override
+    void apply(Project project) {
+        println " apply image plugin "
+//        android.registerTransform(new ImageMonitorTransform())
+
+        def android = project.extensions.android
+//        def configuration = project.systrace
+        android.applicationVariants.all { variant ->
+
+            println " do tasks variant:"+variant
+            // 任务代码
+            /*String output = configuration.output
+            if (Util.isNullOrNil(output)) {
+                configuration.output = project.getBuildDir().getAbsolutePath() + File.separator + "systrace_output"
+            }
+
+            if (configuration.enable) {
+                SystemTraceTransform.inject(project, variant)
+            }*/
+        }
+    }
+}
+

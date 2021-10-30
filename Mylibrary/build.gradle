@@ -3,6 +3,14 @@ plugins {
 }
 
 android {
+    signingConfigs {
+        debug {
+            storeFile file('D:\\work\\github\\zhangshaowen\\zhangshaowen_bd\\GradleDemo\\keystore\\xxxxxx.keystore')
+            storePassword '123456'
+            keyAlias 'wangweijun'
+            keyPassword '123456'
+        }
+    }
     compileSdkVersion 30
     buildToolsVersion "31.0.0"
 

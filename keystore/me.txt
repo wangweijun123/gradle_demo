@@ -1,0 +1,3 @@
+pwd: 123456
+alias: wangweijun
+pwd: 123456

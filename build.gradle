@@ -47,7 +47,8 @@ ext {
 // task新建一个任务
 //根目录运行这个task任务 gradlew printProperties -Pcmd="hello from cmd"
 // 其实就Project.java里面的方法
-task('printProperties', {
+// 这这个在配置阶段打印的,它根本就没有运行
+/*task('printProperties', {
     println local   // 打印ext里面的属性
     println(propertiesFile) // 打印gradle.properties里面的属性
 
@@ -56,8 +57,35 @@ task('printProperties', {
     if (flag) {
         println cmd
     }
-})
+})*/
 
+// gradlew hello
+// 第一种写法: build failed
+/*task hello  {
+    println 'hellow, world'
+}*/
+
+/*task(hello) {
+    println 'hellow, world'
+}*/
+
+/*tasks.create(name: 'hello') {
+    println 'hello, world'
+}*/
+
+/*task hello {
+    // 打印在任务配置阶段
+    println 'configuration'
+
+    // 打印在任务运行阶段
+    doFirst {
+        println 'hello '
+    }
+
+    doLast {
+        println 'bye !!! '
+    }
+}*/
 
 
 

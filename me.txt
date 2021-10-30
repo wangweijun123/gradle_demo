@@ -38,3 +38,8 @@ gradlew assembleDebug 生成debug包
 13 依赖库的配置:5种 compile implementation apk provided testCompile
 
 14 动态化版本: 最好指定依赖库的版本号，包括最小版本
+15 groovy 是java虚拟机语言，这是动态语言，java是静态语言
+groovy 很像 js语言
+
+gradle 自定义插件指南
+16 https://gradle.org/docs/current/userguide/custom_plugins.html
