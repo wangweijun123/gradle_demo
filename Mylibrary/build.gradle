@@ -21,6 +21,13 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+        debug {
+
+        }
+        // 主模块配置了变体，所有引用的模块(指的是android library)
+        // 也必须配置变体,保持同步, 打成jar模块不需要
+        staging {
+        }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8

@@ -21,7 +21,7 @@ dependencies {
      * apk 打包进apk,不参与编译
      * provided 参与编译，不打进apk
      */
-
+    // : 相当于斜线, 查找模块都是从根目录开始
     compile project(':libFolder:lib3')
 //    implementation project(':libFolder:lib3')
 

@@ -38,3 +38,19 @@ gradlew assembleDebug 生成debug包
 13 依赖库的配置:5种 compile implementation apk provided testCompile
 
 14 动态化版本: 最好指定依赖库的版本号，包括最小版本
+
+15 Make Project 与 Rebuild Project 区别是编译产物不一样，但都会生产apk
+
+16 不同的构建类型指定不同的源集(Source Set), 构建类型的资源目录需要自己手动创建
+release debug stagging
+不同的源集其实无外乎java 与资源
+java类: 构建类型中不能与main模块重名
+资源: Drawables 与layout 完成覆盖main中的同名的资源
+values文件夹: 比如Strings.xml, 合并加替换同名
+
+manifest.xml 也是合并
+其实最终验证很简单,反编译apk
+
+product flavors 以及组合体
+
+

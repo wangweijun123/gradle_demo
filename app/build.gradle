@@ -24,10 +24,12 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-
+    // 构建类型 debug包，还是release
     buildTypes {
         release {
+            // 是否清除无用资源 false:禁用 true:开启，线上版本必须开启
             minifyEnabled false
+            // 混淆文件路劲
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
 
             // 根据构建类型给生成的BuildConfig注入一个常量(String(字符串需要括号哦), boolean)
@@ -44,6 +46,16 @@ android {
             // 配置资源值(给strings.xml,增加一个string资源)
             resValue "string", "app_name_from_build_gradle", "e_debug"
         }
+
+        // 自定义构建类型(使用debug构建类型来初始化自定义的类型)
+        // 最好从一个构建类型去复制一份，既然是变体，所有变化的都要定义？？？？
+        staging.initWith(buildTypes.debug)
+        staging {
+            applicationIdSuffix ".staging"
+            versionNameSuffix "-staging"
+            /*buildConfigField "String", "API_UUL", "\"http://staging.com\""
+            resValue "string", "app_name_from_build_gradle", "e_debug"*/
+        }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -57,6 +69,10 @@ dependencies {
 
     implementation project(':Mylibrary')
     implementation project(':libFolder:lib2')
+
+    // 针对不同构建类型引用不同的依赖
+//    debugImplementation()
+//    stagingImplementation()
 
     // group name version
     implementation 'androidx.appcompat:appcompat:1.3.1'
